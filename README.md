@@ -1,0 +1,2 @@
+# NoAI
+No AI
