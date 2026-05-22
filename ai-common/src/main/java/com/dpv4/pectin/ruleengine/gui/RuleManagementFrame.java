@@ -27,6 +27,7 @@ public class RuleManagementFrame extends JFrame {
     private JButton enableButton;
     private JButton executeButton;
     private JButton mailConfigButton;
+    private JButton recordsButton;
     
     public RuleManagementFrame(RuleRepository ruleRepository, RuleEngine ruleEngine) {
         this.ruleRepository = ruleRepository;
@@ -91,6 +92,12 @@ public class RuleManagementFrame extends JFrame {
         mailConfigButton = new JButton("邮件配置");
         mailConfigButton.addActionListener(e -> showMailConfig());
         toolBar.add(mailConfigButton);
+        
+        toolBar.addSeparator();
+        
+        recordsButton = new JButton("查看记录");
+        recordsButton.addActionListener(e -> showRecords());
+        toolBar.add(recordsButton);
         
         return toolBar;
     }
@@ -221,6 +228,12 @@ public class RuleManagementFrame extends JFrame {
     private void showMailConfig() {
         MailConfigDialog dialog = new MailConfigDialog(this);
         dialog.setVisible(true);
+    }
+    
+    private void showRecords() {
+        com.dpv4.pectin.service.RecordService recordService = new com.dpv4.pectin.service.RecordService();
+        com.dpv4.pectin.gui.RecordDisplayFrame frame = new com.dpv4.pectin.gui.RecordDisplayFrame(recordService);
+        frame.setVisible(true);
     }
     
     public static void main(String[] args) {
